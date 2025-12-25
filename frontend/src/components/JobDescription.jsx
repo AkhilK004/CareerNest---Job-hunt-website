@@ -48,35 +48,58 @@ const JobDescription = () => {
   }, [params.id, dispatch, authUser?._id]);
 
   return (
-    <div className='max-w-7xl mx-auto my-10'>
-      <div className='flex items-center justify-between'>
-        <div>
-          <h1 className='font-bold text-xl '>{singleJobById?.title}</h1>
-          <div className='flex items-center gap-2 my-2'>
-            <Badge className={'text-blue-700 font-bold'} variant={'ghost'}>{singleJobById?.position} Positions</Badge>
-            <Badge className={'text-[#F83002] font-bold'} variant={'ghost'}>{singleJobById?.jobType}</Badge>
-            <Badge className={'text-[#7209b7] font-bold'} variant={'ghost'}>{singleJobById?.salary} LPA</Badge>
+    <div className='max-w-7xl mx-auto my-16 px-8'>
+      <div className='bg-white rounded-lg border border-[#E2E8F0] shadow-sm p-8 mb-8'>
+        <div className='flex items-center justify-between mb-6'>
+          <div className='flex-1'>
+            <h1 className='font-bold text-3xl text-[#0F172A] mb-4'>{singleJobById?.title}</h1>
+            <div className='flex items-center gap-3 flex-wrap'>
+              <Badge className={'text-[#3B82F6] bg-[#EFF6FF] font-medium border-0'} variant={'outline'}>{singleJobById?.position} Positions</Badge>
+              <Badge className={'text-[#64748B] bg-[#F1F5F9] font-medium border-0'} variant={'outline'}>{singleJobById?.jobType}</Badge>
+              <Badge className={'text-[#0F172A] bg-[#F8FAFC] font-medium border-0'} variant={'outline'}>{singleJobById?.salary} LPA</Badge>
+            </div>
+          </div>
+          <Button
+            onClick={isApplied ? null : applyJobHandler}
+            disabled={isApplied}
+            className={`rounded-lg px-8 ${isApplied ? "bg-[#64748B] cursor-not-allowed text-white" : "bg-[#3B82F6] hover:bg-[#2563EB] text-white"}`}
+          >
+            {isApplied ? "Already Applied" : "Apply Now"}
+          </Button>
+        </div>
+      </div>
+      <div className='bg-white rounded-lg border border-[#E2E8F0] shadow-sm p-8'>
+        <h1 className='border-b-2 pb-3 border-b-[#E2E8F0] font-semibold text-xl text-[#0F172A] mb-6'>Job Description</h1>
+        <div className='space-y-4'>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Role:</span>
+            <span className='text-[#64748B]'>{singleJobById?.title}</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Location:</span>
+            <span className='text-[#64748B]'>{singleJobById?.location}</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Description:</span>
+            <span className='text-[#64748B] leading-relaxed'>{singleJobById?.description}</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Experience:</span>
+            <span className='text-[#64748B]'>{singleJobById?.experienceLevel}</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Salary:</span>
+            <span className='text-[#64748B]'>{singleJobById?.salary} LPA</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Total Applicants:</span>
+            <span className='text-[#64748B]'>{singleJobById?.applications?.length}</span>
+          </div>
+          <div className='flex items-start'>
+            <span className='font-semibold text-[#0F172A] min-w-[120px]'>Posted Date:</span>
+            <span className='text-[#64748B]'>{singleJobById?.createdAt.split("T")[0]}</span>
           </div>
         </div>
-        <Button
-          onClick={isApplied ? null : applyJobHandler}
-          disabled={isApplied}
-          className={`rounded-lg ${isApplied ? "bg-gray-600 cursor-not-allowed" : "bg-[#7209b7] hover:bg-[#5f32ad]"}`}
-        >
-          {isApplied ? "Already Applied" : "Apply Now"}
-        </Button>
-      </div>
-      <div className='my-4'>
-        <h1 className='border-b-2 pb-1 border-b-gray-300 font-medium'>Job Description</h1>
-      </div>
-      <div>
-        <h1 className='font-bold my-1'>Role: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.title}</span></h1>
-        <h1 className='font-bold my-1'>Location: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.location}</span></h1>
-        <h1 className='font-bold my-1'>Description: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.description}</span></h1>
-        <h1 className='font-bold my-1'>Experience: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.experienceLevel}</span></h1>
-        <h1 className='font-bold my-1'>Salary: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.salary} LPA</span></h1>
-        <h1 className='font-bold my-1'>Total Applicants: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.applications?.length}</span></h1>
-        <h1 className='font-bold my-1'>Posted Date: <span className='pl-4 font-normal text-gray-800'>{singleJobById?.createdAt.split("T")[0]}</span></h1>
       </div>
       <div>
         {/* <ApplyJobDialog open={open} setOpen={setOpen} /> */}

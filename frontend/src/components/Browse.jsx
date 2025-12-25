@@ -17,13 +17,13 @@ const Browse = () => {
     }
   }, [])
   return (
-    <div>
+    <div className='bg-[#FAFAFA] min-h-screen'>
       <Navbar />
-      <div className='max-w-7xl mx-auto my-10'>
-        <h1 className='font-bold text-xl my-10'>Search Results ({allJobs?.length})</h1>
-        <div className='flex-1 h-[88vh] overflow-y-auto  no-scrollbar pb-5'>
-          <div className='grid grid-cols-3 gap-4'>
-
+      <div className='max-w-7xl mx-auto py-12 px-8'>
+        <h1 className='font-bold text-2xl text-[#0F172A] mb-2'>Search Results</h1>
+        <p className='text-[#64748B] mb-8'>{allJobs?.length || 0} jobs found</p>
+        <div className='flex-1 min-h-[88vh] overflow-y-auto no-scrollbar pb-5'>
+          <div className='grid grid-cols-3 gap-6'>
             {
               allJobs?.length !== 0 ? allJobs?.map((job) => {
                 return (
@@ -37,7 +37,7 @@ const Browse = () => {
                     <Job job={job} />
                   </motion.div>
                 )
-              }) : <span>No Job Found</span>
+              }) : <div className='col-span-3 text-center py-16'><span className='text-[#64748B] text-lg'>No jobs found</span></div>
             }
           </div>
         </div>
