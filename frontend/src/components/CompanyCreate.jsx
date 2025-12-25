@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
 import { Button } from './ui/button'
-import axios from 'axios'
+import api from '@/lib/api'
 import { toast } from 'sonner'
 import Navbar from './shared/Navbar'
 import { useDispatch } from 'react-redux'
@@ -18,11 +18,10 @@ const CompanyCreate = () => {
 
     const createNewCompany = async () => {
         try {
-            const res = await axios.post("http://localhost:8000/api/v1/company/register", { companyName }, {
+            const res = await api.post("/api/v1/company/register", { companyName }, {
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                withCredentials: true
+                }
             });
             if (res?.data?.success) {
                 dispatch(setSingleCompany(res.data.company));

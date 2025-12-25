@@ -7,7 +7,7 @@ import { Avatar } from "./ui/avatar"
 import { AvatarImage } from "@radix-ui/react-avatar"
 import { LogOut, User2 } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
-import axios from "axios"
+import api from "@/lib/api"
 import { toast } from "sonner"
 import { useDispatch, useSelector } from "react-redux"
 import { setAuthUser } from "@/redux/authSlice"
@@ -18,7 +18,7 @@ export function ProfilePopover() {
     const { authUser } = useSelector(store => store.auth);
     const logoutHandler = async () => {
         try {
-            const res = await axios.get("https://jobportal-youtube.onrender.com/api/v1/user/logout", { withCredentials: true });
+            const res = await api.get("/api/v1/user/logout");
             
             if (res.data.success) {
                 dispatch(setAuthUser(null));

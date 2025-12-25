@@ -3,7 +3,7 @@ import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
-import axios from 'axios';
+import api from '@/lib/api';
 import { setSingleJobById } from '@/redux/jobSlice';
 import { useParams } from 'react-router-dom';
 
@@ -19,8 +19,7 @@ const JobDescription = () => {
 
   const applyJobHandler = async () => {
     try {
-      axios.defaults.withCredentials = true;
-      const res = await axios.get(`http://localhost:8000/api/v1/application/apply/${params.id}`);
+      const res = await api.get(`/api/v1/application/apply/${params.id}`);
       if (res.data.success) {
         setIsApplied(true); // Update the local state
         const updatedJob = { ...singleJobById, applications: [...singleJobById.applications, { applicant: authUser._id }] };
@@ -36,8 +35,7 @@ const JobDescription = () => {
   useEffect(() => {
     const fetchSingleJob = async () => {
       try {
-        axios.defaults.withCredentials = true;
-        const res = await axios.get(`http://localhost:8000/api/v1/job/${params.id}`);
+        const res = await api.get(`/api/v1/job/${params.id}`);
         if (res.data.success) {
           dispatch(setSingleJobById(res.data.job));
           setIsApplied(res.data.job.applications.some(application => application.applicant === authUser?._id)); // Ensure the state is in sync with fetched data

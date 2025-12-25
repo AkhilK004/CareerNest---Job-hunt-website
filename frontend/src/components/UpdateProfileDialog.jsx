@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { setAuthUser, setLoading } from "@/redux/authSlice"
-import axios from "axios"
+import api from "@/lib/api"
 import { Loader2 } from "lucide-react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -50,11 +50,10 @@ export function UpdateProfileDialog({ open, setOpen }) {
 
         try {
             dispatch(setLoading(true));
-            const res = await axios.post("http://localhost:8000/api/v1/user/profile/update", formData, {
+            const res = await api.post("/api/v1/user/profile/update", formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
-                },
-                withCredentials: true
+                }
             });
             if (res.data.success) {
                 dispatch(setAuthUser(res.data.user));

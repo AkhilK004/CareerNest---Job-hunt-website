@@ -3,7 +3,7 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import Navbar from '../shared/Navbar'
 import { Button } from '../ui/button'
-import axios from 'axios'
+import api from '@/lib/api'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '@/redux/authSlice'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../ui/select'
@@ -38,11 +38,10 @@ const CreateJobs = () => {
         e.preventDefault();
         try {
             dispatch(setLoading(true));
-            const res = await axios.post(`http://localhost:8000/api/v1/job/postjob`, input, {
+            const res = await api.post(`/api/v1/job/postjob`, input, {
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                withCredentials: true
+                }
             }); 
             if (res.data.success) {
                 toast.success(res.data.message);

@@ -4,7 +4,7 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { RadioGroup, RadioGroupItem } from '../ui/radio-group'
-import axios from 'axios'
+import api from '@/lib/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
@@ -28,11 +28,10 @@ const Login = () => {
         
         try {
             dispatch(setLoading(true));
-            const res = await axios.post("http://localhost:8000/api/v1/user/login", input, {
+            const res = await api.post("/api/v1/user/login", input, {
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                withCredentials: true
+                }
             });
             if (res.data.success) {
                 dispatch(setAuthUser(res.data.user));

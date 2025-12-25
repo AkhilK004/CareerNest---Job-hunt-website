@@ -4,7 +4,7 @@ import { Label } from '../ui/label'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
 import { RadioGroup, } from '../ui/radio-group'
-import axios from 'axios'
+import api from '@/lib/api'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useDispatch, useSelector } from 'react-redux'
@@ -44,11 +44,10 @@ const Singup = () => {
     } 
     try {
       dispatch(setLoading(true));
-      const res = await axios.post("http://localhost:8000/api/v1/user/register", formData, {
+      const res = await api.post("/api/v1/user/register", formData, {
         headers: {
           "Content-Type": "multipart/form-data"
-        },
-        withCredentials: true
+        }
       });
       if (res.data.success) {
         navigate("/login");

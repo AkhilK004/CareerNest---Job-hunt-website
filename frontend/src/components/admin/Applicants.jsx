@@ -1,4 +1,4 @@
-import axios from 'axios'
+import api from '@/lib/api'
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import Navbar from '../shared/Navbar';
@@ -16,8 +16,7 @@ const Applicants = () => {
     useEffect(() => {
         const fetchAllApplicants = async () => {
             try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get(`http://localhost:8000/api/v1/application/${id}/applicants`);
+                const res = await api.get(`/api/v1/application/${id}/applicants`);
                 if (res.data.success) {
                     dispatch(setAllApplicants(res.data.job));
                 }

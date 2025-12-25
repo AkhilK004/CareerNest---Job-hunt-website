@@ -12,7 +12,7 @@ import { useSelector } from "react-redux"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 import { motion } from "framer-motion";
-import axios from "axios";
+import api from "@/lib/api";
 import { toast } from "sonner";
 
 const shortlistingStatus = ["Accepted", "Rejected"];
@@ -23,9 +23,7 @@ const ApplicantsTable = () => {
 
     const statusHandler = async (status, id) => {
         try {
-            const res = await axios.post(`http://localhost:8000/api/v1/application/status/${id}/update`, {status}, {
-                withCredentials: true
-            });
+            const res = await api.post(`/api/v1/application/status/${id}/update`, {status});
             if(res.data.success){ 
                 toast.success(res.data.message);
             }

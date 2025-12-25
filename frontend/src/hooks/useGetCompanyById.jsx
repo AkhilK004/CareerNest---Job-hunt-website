@@ -1,5 +1,5 @@
 import { setSingleCompany } from "@/redux/companySlice";
-import axios from "axios";
+import api from "@/lib/api";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
@@ -8,8 +8,7 @@ const useGetCompanyById = (id) => {
     useEffect(()=>{
         const fetchCompanyDetails = async () => {
             try {
-                axios.defaults.withCredentials = true;
-                const res = await axios.get(`http://localhost:8000/api/v1/company/getcompany/${id}`);
+                const res = await api.get(`/api/v1/company/getcompany/${id}`);
                 if(res.data.success){
                     dispatch(setSingleCompany(res.data.company));
                 }
