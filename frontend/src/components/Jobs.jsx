@@ -34,17 +34,17 @@ const Jobs = () => {
         }
     })
     return (
-        <div className='bg-[#FAFAFA] min-h-screen'>
+        <div className='bg-[#FAFAFA] min-h-screen overflow-x-hidden'>
             <Navbar />
-            <div className='max-w-7xl mx-auto py-8 px-8'>
-                <div className='flex gap-6'>
-                    <div className='w-[20%]'>
+            <div className='max-w-7xl mx-auto py-6 md:py-8 px-4 md:px-8'>
+                <div className='flex flex-col md:flex-row gap-4 md:gap-6'>
+                    <div className='w-full md:w-[20%]'>
                         <FilterCard />
                     </div>
                     {
                         filterJobs?.length <= 0 ? <Jobnotfound /> : (
                             <div className='flex-1 min-h-[88vh] overflow-y-auto no-scrollbar pb-5'>
-                                <div className='grid grid-cols-3 gap-6'>
+                                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
                                     {
                                         filterJobs && filterJobs?.map((job) => (
                                             <motion.div

@@ -18,34 +18,34 @@ const Job = ({ job }) => {
     }
  
     return (
-        <div className='p-8 rounded-lg bg-white border border-[#E2E8F0] shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-l-4 hover:border-l-[#3B82F6] transition-all duration-200 cursor-pointer group'>
-            <div className='flex items-center justify-between mb-6'>
-                <p className='text-sm text-[#64748B]'>{daysAgoFunction(job?.createdAt) === 0 ? 'Today' : `${daysAgoFunction(job?.createdAt)} days ago`}</p>
-                <Button size="icon" className="rounded-lg border-[#E2E8F0] hover:bg-[#FAFAFA]" variant="ghost"><Bookmark className='h-4 w-4 text-[#64748B]' /></Button>
+        <div className='p-4 md:p-8 rounded-lg bg-white border border-[#E2E8F0] shadow-sm hover:shadow-md hover:-translate-y-0.5 hover:border-l-4 hover:border-l-[#3B82F6] transition-all duration-200 cursor-pointer group'>
+            <div className='flex items-center justify-between mb-4 md:mb-6'>
+                <p className='text-xs md:text-sm text-[#64748B]'>{daysAgoFunction(job?.createdAt) === 0 ? 'Today' : `${daysAgoFunction(job?.createdAt)} days ago`}</p>
+                <Button size="icon" className="rounded-lg border-[#E2E8F0] hover:bg-[#FAFAFA] min-h-[48px] min-w-[48px]" variant="ghost"><Bookmark className='h-4 w-4 text-[#64748B]' /></Button>
             </div>
-            <div className='flex items-center gap-4 mb-6'>
-                <div className='p-3 rounded-lg border border-[#E2E8F0] bg-[#FAFAFA]'>
-                    <Avatar className='h-12 w-12'>
+            <div className='flex items-center gap-3 md:gap-4 mb-4 md:mb-6'>
+                <div className='p-2 md:p-3 rounded-lg border border-[#E2E8F0] bg-[#FAFAFA]'>
+                    <Avatar className='h-10 w-10 md:h-12 md:w-12'>
                         <AvatarImage src={job?.company?.logo} />
                     </Avatar>
                 </div>
                 <div>
-                    <h1 className='font-semibold text-lg text-[#0F172A]'>{job?.company?.name}</h1>
-                    <p className='text-sm text-[#64748B]'>India</p>
+                    <h1 className='font-semibold text-base md:text-lg text-[#0F172A]'>{job?.company?.name}</h1>
+                    <p className='text-xs md:text-sm text-[#64748B]'>India</p>
                 </div>
             </div>
-            <div className='mb-6'>
-                <h1 className='font-bold text-xl text-[#0F172A] mb-2'>{job?.title}</h1>
-                <p className='text-sm text-[#64748B] line-clamp-2 leading-relaxed'>{job?.description}</p>
+            <div className='mb-4 md:mb-6'>
+                <h1 className='font-bold text-lg md:text-xl text-[#0F172A] mb-2'>{job?.title}</h1>
+                <p className='text-xs md:text-sm text-[#64748B] line-clamp-2 leading-relaxed'>{job?.description}</p>
             </div>
-            <div className='flex items-center gap-2 mb-6 flex-wrap'>
-                <Badge className={'text-[#3B82F6] bg-[#EFF6FF] font-medium border-0'} variant={'outline'}>{job?.position} positions</Badge>
-                <Badge className={'text-[#64748B] bg-[#F1F5F9] font-medium border-0'} variant={'outline'}>{job?.jobType}</Badge>
-                <Badge className={'text-[#0F172A] bg-[#F8FAFC] font-medium border-0'} variant={'outline'}>{job?.salary} LPA</Badge>
+            <div className='flex items-center gap-2 mb-4 md:mb-6 flex-wrap'>
+                <Badge className={'text-[#3B82F6] bg-[#EFF6FF] font-medium border-0 text-xs'} variant={'outline'}>{job?.position} positions</Badge>
+                <Badge className={'text-[#64748B] bg-[#F1F5F9] font-medium border-0 text-xs'} variant={'outline'}>{job?.jobType}</Badge>
+                <Badge className={'text-[#0F172A] bg-[#F8FAFC] font-medium border-0 text-xs'} variant={'outline'}>{job?.salary} LPA</Badge>
             </div>
-            <div className='flex items-center gap-3'>
-                <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline" className="rounded-lg border-[#E2E8F0] text-[#0F172A] hover:bg-[#FAFAFA] flex-1">Details</Button>
-                <Button className="bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-lg flex-1">Save For Later</Button>
+            <div className='flex flex-col md:flex-row items-stretch md:items-center gap-3'>
+                <Button onClick={() => navigate(`/description/${job?._id}`)} variant="outline" className="rounded-lg border-[#E2E8F0] text-[#0F172A] hover:bg-[#FAFAFA] flex-1 min-h-[48px]">Details</Button>
+                <Button className="bg-[#3B82F6] hover:bg-[#2563EB] text-white rounded-lg flex-1 min-h-[48px]">Save For Later</Button>
             </div>
             <div>
                 <ApplyJobDialog open={open} setOpen={setOpen} />

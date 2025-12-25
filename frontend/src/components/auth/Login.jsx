@@ -55,62 +55,68 @@ const Login = () => {
     return (
         <>
             <Navbar />
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
-                    <h1 className='font-bold text-xl mb-4'>Login</h1>
-                    <div className='my-2'>
-                        <Label>Email</Label>
+            <div className='flex items-center justify-center max-w-7xl mx-auto overflow-x-hidden'>
+                <form onSubmit={submitHandler} className='w-full md:w-1/2 border border-[#E2E8F0] rounded-lg p-6 md:p-4 my-6 md:my-10 mx-4 md:mx-0'>
+                    <h1 className='font-bold text-xl md:text-2xl mb-6 md:mb-4'>Login</h1>
+                    <div className='my-4 md:my-2'>
+                        <Label className='text-base'>Email</Label>
                         <Input
                             type="email"
                             name="email"
                             value={input.email}
                             onChange={changeEventHandler}
                             placeholder="patel@gmail.com"
+                            className='min-h-[48px] text-base'
+                            style={{ fontSize: '16px' }}
                         />
                     </div>
-                    <div className='my-2'>
-                        <Label>Password</Label>
+                    <div className='my-4 md:my-2'>
+                        <Label className='text-base'>Password</Label>
                         <Input
                             type="password"
                             name="password"
                             value={input.password}
                             onChange={changeEventHandler}
                             placeholder="password"
+                            className='min-h-[48px] text-base'
+                            style={{ fontSize: '16px' }}
                         />
                     </div>
-                    <RadioGroup defaultValue="comfortable" className="flex items-center gap-4 my-5">
-                        <div className="flex items-center space-x-2">
+                    <RadioGroup defaultValue="comfortable" className="flex flex-col md:flex-row items-start md:items-center gap-4 my-6 md:my-5">
+                        <div className="flex items-center space-x-2 min-h-[48px]">
                             <input
                                 type="radio"
                                 name="role"
                                 value="student"
                                 checked={input.role === 'student'}
                                 onChange={changeEventHandler}
+                                className='min-w-[20px] min-h-[20px]'
                             />
-                            <Label htmlFor="r1">Students</Label>
+                            <Label htmlFor="r1" className='text-base cursor-pointer'>Students</Label>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex items-center space-x-2 min-h-[48px]">
                             <input
                                 type="radio"
                                 name="role"
                                 value="recruiter"
                                 checked={input.role === 'recruiter'}
                                 onChange={changeEventHandler}
+                                className='min-w-[20px] min-h-[20px]'
                             />
-                            <Label htmlFor="r2">Recruiter</Label>
+                            <Label htmlFor="r2" className='text-base cursor-pointer'>Recruiter</Label>
                         </div>
                     </RadioGroup>
                     {
                         loading ? (
-                            <Button className='w-full my-4'>
+                            <Button className='w-full my-4 min-h-[48px]'>
                                 <Loader2 className='mr-2 h-4 w-4 animate-spin' />
                                 Please wait
                             </Button>
                         ) : (
-                            <Button type="submit" className='w-full my-4'>Login</Button>
+                            <Button type="submit" className='w-full my-4 min-h-[48px]'>Login</Button>
                         )
                     }
-                    <span className='text-sm'>Don't have an account? <Link to={"/signup"} className='text-blue-500 cursor-pointer underline'>Signup</Link></span>
+                    <span className='text-sm md:text-base block text-center mt-4'>Don't have an account? <Link to={"/signup"} className='text-[#3B82F6] cursor-pointer underline'>Signup</Link></span>
                 </form>
             </div>
         </>

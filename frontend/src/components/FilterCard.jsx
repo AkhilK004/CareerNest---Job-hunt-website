@@ -30,21 +30,21 @@ const FilterCard = () => {
     }, [selectedValue])
 
     return (
-        <div className='w-full bg-white p-3 rounded-md'>
+        <div className='w-full bg-white p-4 md:p-3 rounded-md border border-[#E2E8F0]'>
             <div className='flex items-center justify-between'>
-                <h1 className='font-bold text-lg'>Filter Jobs</h1>
+                <h1 className='font-bold text-base md:text-lg'>Filter Jobs</h1>
             </div>
-            <hr className='mt-3' />
+            <hr className='mt-3 border-[#E2E8F0]' />
             <RadioGroup value={selectedValue} onValueChange={handleChange}>
                 {filterData.map((data, index) => (
-                    <div key={index}>
-                        <h1 className='font-medium text-lg'>{data.filterType}</h1>
+                    <div key={index} className='mt-4'>
+                        <h1 className='font-medium text-base md:text-lg mb-3'>{data.filterType}</h1>
                         {data.array.map((item, idx) => {
                             const itemId = `r${index}-${idx}`; // Ensure unique id for each radio button
                             return (
-                                <div key={idx} className="flex items-center space-x-2 my-2">
-                                    <RadioGroupItem value={item} id={itemId} />
-                                    <Label htmlFor={itemId}>{item}</Label>
+                                <div key={idx} className="flex items-center space-x-2 my-3 min-h-[48px]">
+                                    <RadioGroupItem value={item} id={itemId} className='min-w-[20px] min-h-[20px]' />
+                                    <Label htmlFor={itemId} className='text-sm md:text-base cursor-pointer'>{item}</Label>
                                 </div>
                             );
                         })}

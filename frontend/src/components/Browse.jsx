@@ -17,13 +17,13 @@ const Browse = () => {
     }
   }, [])
   return (
-    <div className='bg-[#FAFAFA] min-h-screen'>
+    <div className='bg-[#FAFAFA] min-h-screen overflow-x-hidden'>
       <Navbar />
-      <div className='max-w-7xl mx-auto py-12 px-8'>
-        <h1 className='font-bold text-2xl text-[#0F172A] mb-2'>Search Results</h1>
-        <p className='text-[#64748B] mb-8'>{allJobs?.length || 0} jobs found</p>
+      <div className='max-w-7xl mx-auto py-6 md:py-12 px-4 md:px-8'>
+        <h1 className='font-bold text-xl md:text-2xl text-[#0F172A] mb-2'>Search Results</h1>
+        <p className='text-[#64748B] mb-6 md:mb-8'>{allJobs?.length || 0} jobs found</p>
         <div className='flex-1 min-h-[88vh] overflow-y-auto no-scrollbar pb-5'>
-          <div className='grid grid-cols-3 gap-6'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
             {
               allJobs?.length !== 0 ? allJobs?.map((job) => {
                 return (
@@ -37,7 +37,7 @@ const Browse = () => {
                     <Job job={job} />
                   </motion.div>
                 )
-              }) : <div className='col-span-3 text-center py-16'><span className='text-[#64748B] text-lg'>No jobs found</span></div>
+              }) : <div className='col-span-1 md:col-span-2 lg:col-span-3 text-center py-16'><span className='text-[#64748B] text-base md:text-lg'>No jobs found</span></div>
             }
           </div>
         </div>
