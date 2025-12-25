@@ -6,8 +6,8 @@ import { singleUpload } from "../middleware/multer.js";
 const router = express.Router();
 
 router.route("/register").post( isAuthenticated ,registerCompany);
-router.route("/getcompany").get( isAuthenticated ,getCompany);
-router.route("/getcompany/:id").get( isAuthenticated ,getCompanyById);
+router.route("/getcompany").get( isAuthenticated ,getCompany); // User's own companies
+router.route("/getcompany/:id").get( getCompanyById); // Public endpoint - view any company
 router.route("/update/:id").put( isAuthenticated,singleUpload, updateCompanyInformation);
 
 export default router;
